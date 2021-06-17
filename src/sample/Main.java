@@ -7,6 +7,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.models.Conexion;
 import sample.views.*;
 
 public class Main extends Application {
@@ -25,6 +26,8 @@ public class Main extends Application {
         primaryStage.setScene(escena);
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+        Conexion.getConexion();
     }
 
     private void CrearUI() {
