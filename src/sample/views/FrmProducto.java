@@ -4,22 +4,30 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sample.models.ProductosDAO;
 
+import java.io.File;
 
-public class FrmCancion extends Stage {
+
+public class FrmProducto extends Stage {
     private Scene scene;
     private VBox vBox;
     private TextField txtNombre, txtPrecio, txtExistencia, txtDisponible, txtMarca, txtModelo, txtcategorias, txtImagen;
-    private Button btnSave;
+    private Button btnSave , btncargar;
     private ProductosDAO objproducDAO;
+    private ImageView muestraimagen;
+    private FileChooser files;
+    private Image imagen;
+    private File file;
     private TableView<ProductosDAO> tableVProducto;
 
-    public FrmCancion(TableView<ProductosDAO>tableVProducto,ProductosDAO objproduDAO){
+    public FrmProducto(TableView<ProductosDAO>tableVProducto, ProductosDAO objproduDAO){
         this.tableVProducto = tableVProducto;
         if (objproduDAO != null)
             this.objproducDAO = objproduDAO;
@@ -65,8 +73,28 @@ public class FrmCancion extends Stage {
         txtcategorias.setPromptText("Categorias");
 
         txtImagen = new TextField();
-        txtImagen.setText(objproducDAO.getImagen_producto());
-        txtImagen.setPromptText("Imagen");
+
+        btncargar = new Button("Imagen");
+
+        files = new FileChooser();
+        muestraimagen = new ImageView();
+        muestraimagen.setFitHeight(150);
+        muestraimagen.setFitWidth(150);
+        muestraimagen.setPreserveRatio(true);
+
+        files.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg",  "*.jpeg")
+        );
+        btncargar.setOnAction(event -> {
+            file = files.showOpenDialog(this);
+            if(files != null){
+                imagen = new Image(file.toURI().toString(), 150, 150, true, true);
+                muestraimagen.setImage(imagen);
+                muestraimagen.setFitHeight(150);
+                muestraimagen.setFitWidth(150);
+                muestraimagen.setPreserveRatio(true);
+            }
+        });
 
         btnSave= new Button("Guardar");
 
@@ -78,7 +106,7 @@ public class FrmCancion extends Stage {
             objproducDAO.setMarca(txtMarca.getText());
             objproducDAO.setModelo(txtModelo.getText());
             objproducDAO.setCategorias(txtcategorias.getText());
-            objproducDAO.setImagen_producto(txtImagen.getText());
+            objproducDAO.setFile(file);
 
             if (objproducDAO.getId_producto() > 0)
                 objproducDAO.UPDATE();
@@ -89,8 +117,8 @@ public class FrmCancion extends Stage {
             tableVProducto.refresh();
             this.close();
         });
-        vBox.getChildren().addAll(txtNombre, txtPrecio, txtExistencia, txtDisponible, txtMarca, txtModelo, txtcategorias,txtImagen,btnSave);
-        scene = new Scene(vBox,300,370);
+        vBox.getChildren().addAll(txtNombre, txtPrecio, txtExistencia, txtDisponible, txtMarca, txtModelo, txtcategorias,muestraimagen,txtImagen, btncargar,btnSave);
+        scene = new Scene(vBox,300,557);
         scene.getStylesheets().add(getClass().getResource("../estilos/estilo2.css").toExternalForm());
 
     }

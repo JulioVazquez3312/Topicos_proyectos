@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.models.ProductosDAO;
+import javafx.scene.image.ImageView;
 
 public class FormProductos extends Stage {
     private TableView<ProductosDAO> tableVProductos;
@@ -28,11 +29,11 @@ public class FormProductos extends Stage {
         tableVProductos = new TableView<>();
         btnAdd = new Button("Agragar una Cancion");
         btnAdd.setOnAction(event -> {
-            new FrmCancion(tableVProductos,null);
+            new FrmProducto(tableVProductos,null);
         });
         vBox.getChildren().addAll(tableVProductos,btnAdd);
         CreaTabla();
-        scene = new Scene(vBox, 850,250);
+        scene = new Scene(vBox, 880,450);
         scene.getStylesheets().add(getClass().getResource("../estilos/estilo2.css").toExternalForm());
     }
 
@@ -61,8 +62,8 @@ public class FormProductos extends Stage {
         TableColumn<ProductosDAO, String> tbcCategorias = new TableColumn<>("Categorias");
         tbcCategorias.setCellValueFactory(new PropertyValueFactory<>("categorias"));
 
-        TableColumn<ProductosDAO, String> tbcLetra = new TableColumn<>("imagen_producto");
-        tbcLetra.setCellValueFactory(new PropertyValueFactory<>("imagen_producto"));
+        TableColumn<ProductosDAO, ImageView> tbcImagen = new TableColumn<>("Imagen");
+        tbcImagen.setCellValueFactory(new PropertyValueFactory<>("imageView"));
 
         TableColumn<ProductosDAO, String> tblEdit = new TableColumn<>("Editar");
         tblEdit.setCellFactory(new Callback<TableColumn<ProductosDAO, String>, TableCell<ProductosDAO, String>>() {
@@ -79,7 +80,7 @@ public class FormProductos extends Stage {
             }
         });
         tableVProductos.getColumns().addAll(tbcIdProducto,tbcNombreProducto,tbcPrecio,tbcExistencia,tbcDisponible,
-                tbcMarca, tbcModelo, tbcCategorias, tbcLetra,tblEdit,tblDelet);
+                tbcMarca, tbcModelo, tbcCategorias, tbcImagen,tblEdit,tblDelet);
         tableVProductos.setItems(objproDAO.SELECT());
     }
 }

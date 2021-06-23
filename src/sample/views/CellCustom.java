@@ -19,7 +19,7 @@ public class CellCustom extends TableCell<ProductosDAO, String> {
             btnCelda = new Button("Editar");
             btnCelda.setOnAction(event -> {
                 objproDAO = CellCustom.this.getTableView().getItems().get(CellCustom.this.getIndex());
-                new FrmCancion(CellCustom.this.getTableView(), objproDAO);
+                new FrmProducto(CellCustom.this.getTableView(), objproDAO);
             });
         } else {
             btnCelda = new Button("Borrar");
