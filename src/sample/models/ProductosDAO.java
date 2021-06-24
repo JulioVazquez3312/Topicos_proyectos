@@ -3,6 +3,7 @@ package sample.models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -131,7 +132,11 @@ public class ProductosDAO {
             query.executeUpdate();
 
         }catch (Exception e){
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mensaje");
+            alert.setHeaderText("Te faltan datos");
+            alert.setContentText("Lo sentimos pero faltan datos para poder insertar uno nuevo");
+            alert.showAndWait();
         }
     }  //MANDA DATOS
 
@@ -151,10 +156,12 @@ public class ProductosDAO {
             query.setBinaryStream(8,fileInputStream, (int) file.length());
             query.executeUpdate();
 
-
-
         }catch (Exception e){
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mensaje");
+            alert.setHeaderText("Te faltan datos");
+            alert.setContentText("Lo sentimos pero faltan datos para actualizar");
+            alert.showAndWait();
         }
     }  //MANDA DATOS
 

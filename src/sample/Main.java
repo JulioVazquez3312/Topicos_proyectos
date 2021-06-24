@@ -58,7 +58,7 @@ public class Main extends Application {
         vBox.getChildren().add(mnbarPrincipal);
 
         escena = new Scene(vBox, 300,100);
-        escena.getStylesheets().add(getClass().getResource("estilos/estilo2.css").toExternalForm());
+        escena.getStylesheets().add(getClass().getResource("assets/estilos/estilo2.css").toExternalForm());
     }
 
     private void opcionesMenu(int opc) {

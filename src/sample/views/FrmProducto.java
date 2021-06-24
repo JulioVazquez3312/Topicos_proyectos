@@ -119,7 +119,7 @@ public class FrmProducto extends Stage {
         });
         vBox.getChildren().addAll(txtNombre, txtPrecio, txtExistencia, txtDisponible, txtMarca, txtModelo, txtcategorias,muestraimagen,txtImagen, btncargar,btnSave);
         scene = new Scene(vBox,300,557);
-        scene.getStylesheets().add(getClass().getResource("../estilos/estilo2.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../assets/estilos/estilo.css").toExternalForm());
 
     }
 }

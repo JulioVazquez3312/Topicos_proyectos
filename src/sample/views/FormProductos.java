@@ -34,7 +34,7 @@ public class FormProductos extends Stage {
         vBox.getChildren().addAll(tableVProductos,btnAdd);
         CreaTabla();
         scene = new Scene(vBox, 880,450);
-        scene.getStylesheets().add(getClass().getResource("../estilos/estilo2.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../assets/estilos/estilo.css").toExternalForm());
     }
 
     private void CreaTabla() {

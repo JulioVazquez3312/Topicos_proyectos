@@ -1,0 +1,39 @@
+.root {
+    -fx-background-image: url(../venom.jpg);
+    -fx-background-position: 90%;
+    -fx-background-color: #cecece;
+	-fx-body-color : #F5F5F5;
+	-fx-outer-border : #cecece;
+}
+
+.button:focused, .toggle-button:focused,
+.split-menu-button:focused, .menu-button:focused,
+.number-button:focused,
+.combo-box:focused .text-field, .choice-box:focused, .color-picker:focused, .date-picker:focused .text-field
+{
+	-fx-effect: dropshadow(gaussian, #b4d1f3, 3, 3, 0, 0);
+}
+.combo-box:focused * {
+	-fx-effect: none;
+}
+
+.button,.menu-button,.toggle-button,.split-menu-button {
+	-fx-font-size: 14;
+	-fx-background-radius: 4;
+	-fx-border-radius: 4;
+	-fx-pref-height: 30;
+	-fx-min-width: 30;
+}
+.button,.menu-button,.split-menu-button,.toggle-button,.number-button {
+	-fx-background-insets: 0, 0, -1, 0;
+}
+
+.split-menu-button > .label {
+	-fx-border-radius: 4 0 0 4;
+	-fx-background-radius: 3 0 0 3;
+}
+
+.split-menu-button > .arrow-button {
+	-fx-border-radius: 0 4 4 0;
+	-fx-background-radius: 0 3 3 0;
+}
